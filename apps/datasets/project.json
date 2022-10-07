@@ -1,0 +1,110 @@
+{
+  "name": "datasets",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/datasets/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/datasets",
+        "index": "apps/datasets/src/index.html",
+        "baseHref": "/",
+        "main": "apps/datasets/src/main.ts",
+        "polyfills": "apps/datasets/src/polyfills.ts",
+        "tsConfig": "apps/datasets/tsconfig.app.json",
+        "assets": [
+          "apps/datasets/src/favicon.ico",
+          "apps/datasets/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "apps/datasets/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/datasets/src/environments/environment.ts",
+              "with": "apps/datasets/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/datasets/webpack.config.prod.js"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "datasets:build",
+        "hmr": true,
+        "port": 4201
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "datasets:build:development"
+        },
+        "production": {
+          "buildTarget": "datasets:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "apps/datasets/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/apps/datasets"
+      ],
+      "options": {
+        "jestConfig": "apps/datasets/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "datasets:build",
+        "port": 4201
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "datasets:build:development"
+        },
+        "production": {
+          "buildTarget": "datasets:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
