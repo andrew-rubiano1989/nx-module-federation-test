@@ -1,7 +1,7 @@
 import * as React from 'react';
 import NxWelcome from './nx-welcome';
 import { Link, Route, Routes } from 'react-router-dom';
-import Test from 'datasets/Test';
+import { Test } from 'datasets/Test';
 
 export function App() {
   return (
