@@ -13,7 +13,8 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationDir": "types"
+    "declarationDir": "types",
+    "baseUrl": "."
   },
   "include": [
     "**/*.ts",
